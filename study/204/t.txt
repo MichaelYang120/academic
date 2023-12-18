@@ -819,6 +819,15 @@ select AVG(count) as Average, Occupation from (select count(Client.Occupation) a
 +---------+------------------------+
 
 #C10. Create a VIEW and display the titles that were borrowed by at least 20% of clients
+CREATE VIEW MostPopularBooks AS SELECT Book.BookTitle, COUNT(Client.ClientID) AS CheckOuts FROM Borrower JOIN Book ON Book.BookID = Borrower.BookID JOIN Client ON Borrower.ClientID = Client.ClientID GROUP BY Book.BookTitle HAVING CheckOuts >= (SELECT (COUNT(Client.ClientID) * 0.2) AS 20pctOfClients FROM Client);
+
+#C10. Results:
++-------------------------+-----------+
+| BookTitle               | CheckOuts |
++-------------------------+-----------+
+| Electrical transformers |        18 |
++-------------------------+-----------+
+
 
 #C11. The top month of borrows in 2017
 # Testing BorrowDate for 2017
