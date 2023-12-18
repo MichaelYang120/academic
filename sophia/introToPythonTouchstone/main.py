@@ -32,6 +32,7 @@ def main():
             # tell the user their guess is too high
             else:
                 print("Your guess is too high")
+        # if the user guess correct
         elif guess == random_number:
             print("You guessed the number!")
             # tell the user how many guesses it took them
